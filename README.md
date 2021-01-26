@@ -2,32 +2,41 @@
 
 ## users テーブル
 
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| nickname | string | null: false |
-| email    | string | null: false |
-| password | string | null: false |
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| nickname           | string | null: false |
+| email              | string | null: false |
+| encrypted_password | string | null: false |
+| last-name          | string | null: false |
+| first-name         | string | null: false |
+| last-name-kana     | string | null: false |
+| first-name-kana    | string | null: false |
+| birthday           | string | null: false |
 
 ### Association
 
 - has_many :purchases
-- has_many :items, through: purchases
+- has_many :items
 - has_many :purchases
 
 ## items テーブル
 
-| Column  | Type       | Options       |
-| ------- | ---------- | ------------- |
-| name    | string     | null: false   |
-| text    | text       | null: false   |
-| image   |            | ActiveStorage |
-| user_id | references |               |
+| Column    | Type       | Options       |
+| --------- | ---------- | ------------- |
+| name      | string     | null: false   |
+| text      | text       | null: false   |
+| category  | string     | null: false   |
+| sales     | string     | null: false   |
+| shipping  | string     | null: false   |
+| area      | string     | null: false   |
+| scheduled | string     | null: false   |
+| price     | string     | null: false   |
+| user_id   | references |               |
 
 ### Association
 
 - has_many :purchases
-- has_many :users, through: purchases
-- has_many :purchases
+- has_many :users
 - belongs_to :user
 
 ## purchases テーブル
@@ -41,7 +50,7 @@
 
 - belongs_to :item
 - belongs_to :user
-- belongs_to :address
+- has_one :address
 
 ## address テーブル
 
@@ -51,8 +60,9 @@
 | prefecture   | string     | null: false |
 | city         | string     | null: false |
 | address-line | string     | null: false |
-| building     | string     | null: false |
+| building     | string     |             |
 | phone-number | string     | null: false |
+| item_id      | references |             |
 
 ### Association
 
