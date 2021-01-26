@@ -7,17 +7,16 @@
 | nickname           | string | null: false |
 | email              | string | null: false |
 | encrypted_password | string | null: false |
-| last-name          | string | null: false |
-| first-name         | string | null: false |
-| last-name-kana     | string | null: false |
-| first-name-kana    | string | null: false |
+| last_name          | string | null: false |
+| first_name         | string | null: false |
+| last_name_kana     | string | null: false |
+| first_name_kana    | string | null: false |
 | birthday           | string | null: false |
 
 ### Association
 
 - has_many :purchases
 - has_many :items
-- has_many :purchases
 
 ## items テーブル
 
@@ -25,13 +24,13 @@
 | --------- | ---------- | ------------- |
 | name      | string     | null: false   |
 | text      | text       | null: false   |
-| category  | string     | null: false   |
-| sales     | string     | null: false   |
-| shipping  | string     | null: false   |
-| area      | string     | null: false   |
-| scheduled | string     | null: false   |
-| price     | string     | null: false   |
-| user_id   | references |               |
+| category  | integer    | null: false   |
+| sales     | integer    | null: false   |
+| shipping  | integer    | null: false   |
+| area      | integer    | null: false   |
+| scheduled | integer    | null: false   |
+| price     | integer    | null: false   |
+| user      | references |               |
 
 ### Association
 
@@ -56,14 +55,14 @@
 
 | Column       | Type       | Options     |
 | ------------ | ---------- | ----------- |
-| postal-code  | string     | null: false |
+| postal_code  | string     | null: false |
 | prefecture   | string     | null: false |
 | city         | string     | null: false |
-| address-line | string     | null: false |
+| address_line | string     | null: false |
 | building     | string     |             |
-| phone-number | string     | null: false |
-| item_id      | references |             |
+| phone_number | string     | null: false |
+| item         | references |             |
 
 ### Association
 
-- belongs_to :purchases
+- belongs_to :purchase
