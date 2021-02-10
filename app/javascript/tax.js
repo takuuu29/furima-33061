@@ -1,14 +1,12 @@
-function tax() {
-  const itemPrice = document.getElementById("item-price");
-    itemPrice.addEventListener('change', () => {
-      const price = itemPrice.value;
-      const addTaxPrice = document.getElementById("add-tax-price");
-      const profit = document.getElementById("profit");
-      const taxPrice = price * 0.1;
-      const saleProfit = price - taxPrice;
-      
-      addTaxPrice.innerHTML = taxPrice;
-      profit.innerHTML = saleProfit; 
-  });
-}
-window.addEventListener("load", tax);
+function tax (){
+  const priceInput = document.getElementById("item-price");
+  priceInput.addEventListener("input", () => {
+    const inputValue = priceInput.value;
+    const addTaxDom = document.getElementById("add-tax-price");
+    addTaxDom.innerHTML = Math.floor(inputValue * 0.1 )
+    const addProfitDom = document.getElementById("profit");
+    addProfitDom.innerHTML = Math.floor(inputValue * 0.9 )
+  })
+};
+
+window.addEventListener('load', tax); 
