@@ -1,9 +1,14 @@
 class Item < ApplicationRecord
   with_options presence: true do
-    validates :name, :text, :image
-    
-    with_options numericality: { other_than: 1 } do
-      validates :category_id, :sales_id, :shipping_id, :prefecture_id, :scheduled_id
+    validates :name, length: { maximum: 40, message: '40文字以内にしてください' }
+    validates :text, length: { maximum: 1000, message: '1000文字以内にしてください' }
+    validates :image
+    with_options numericality: { other_than: 1, message: '選択していない項目があります' } do
+      validates :category_id
+      validates :sales_id
+      validates :shipping_id
+      validates :prefecture_id
+      validates :scheduled_id
     end
 
     with_options format: { with: /\A[0-9]+\z/ } do
