@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :move_to_log_in, except: [:index]
 
   def index
+    @items = Item.all.includes(:user).order('created_at DESC')
   end
 
   def new
