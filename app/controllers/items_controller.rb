@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
 
   def index
+    @items = Item.all.includes(:user).order('created_at DESC')
   end
 
   def new
@@ -18,10 +19,6 @@ class ItemsController < ApplicationController
   end
 
   private
-
-  def move_to_log_in
-    redirect_to new_user_session_path unless user_signed_in?
-  end
 
   def items_params
     params.require(:item).permit(:name, :text, :category_id, :sales_id, :shipping_id, :prefecture_id, :scheduled_id, :price, :image).merge(user_id: current_user.id)

@@ -24,5 +24,5 @@ class Item < ApplicationRecord
   belongs_to :shipping
   belongs_to :prefecture
   belongs_to :scheduled
-
+  has_one    :purchase
 end
