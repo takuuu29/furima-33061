@@ -14,6 +14,11 @@ RSpec.describe PurchaseAddress, type: :model do
           expect(@purchase_address).to be_valid
         end
 
+        it '建物名が空でも購入できること' do
+          @purchase_address.building = nil
+          expect(@purchase_address).to be_valid
+        end
+
         it "priceとtokenがあれば保存ができること" do
           expect(@purchase_address).to be_valid
         end
