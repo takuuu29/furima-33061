@@ -1,4 +1,4 @@
-function tax (){
+function item_price (){
   const priceInput = document.getElementById("item-price");
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;
@@ -9,4 +9,4 @@ function tax (){
   })
 };
 
-window.addEventListener('load', tax); 
+window.addEventListener('load', item_price); 
