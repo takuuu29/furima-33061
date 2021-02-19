@@ -8,7 +8,7 @@ class User < ApplicationRecord
     validates :last_name_kana, format: {with: /\A[ァ-ヶー－]+\z/ }
     validates :first_name_kana, format: {with: /\A[ァ-ヶー－]+\z/ }
     validates :birthday
-    validates :password, format: {with: /\A[a-z\d]+\z/i }
+    validates :password, format: {with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
   end
   has_many :items
   has_many :purchases
