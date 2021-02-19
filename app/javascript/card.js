@@ -1,6 +1,9 @@
-const pay = () => {
+const pay = () => {  
+  console.log("カード情報トークン化のためのJavaScript");
+
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY); // PAY.JPテスト公開鍵
   const form = document.getElementById("charge-form");
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -12,7 +15,6 @@ const pay = () => {
       cvc: formData.get("purchase_address[cvc]"),
       exp_month: formData.get("purchase_address[exp_month]"),
       exp_year: `20${formData.get("purchase_address[exp_year]")}`,
-
     };
 
     Payjp.createToken(card, (status, response) => {

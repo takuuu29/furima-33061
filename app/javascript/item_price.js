@@ -9,4 +9,4 @@ function item_price (){
   })
 };
 
-window.addEventListener('load', item_price); 
+window.addEventListener('load', item_price);
