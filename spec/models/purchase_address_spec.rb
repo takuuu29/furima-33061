@@ -39,10 +39,16 @@ RSpec.describe PurchaseAddress, type: :model do
           expect(@purchase_address.errors.full_messages).to include("Postal code can't be blank")
         end
 
-        it 'prefectureが空のとき' do
-          @purchase_address.prefecture_id = nil
+        it 'postal_codeがハイフン無し' do
+          @purchase_address.postal_code = '1234567'
           @purchase_address.valid?
-          expect(@purchase_address.errors.full_messages).to include("Prefecture can't be blank", 'Prefecture 選択していない項目があります')
+          expect(@purchase_address.errors.full_messages).to include('Postal code 郵便番号をハイフン込みで半角数字入力してください')
+        end
+
+        it 'prefectureが空のとき' do
+          @purchase_address.prefecture_id = 1
+          @purchase_address.valid?
+          expect(@purchase_address.errors.full_messages).to include("Prefecture 選択していない項目があります")
         end
 
         it 'cityが空のとき' do
@@ -61,6 +67,18 @@ RSpec.describe PurchaseAddress, type: :model do
           @purchase_address.phone_number = nil
           @purchase_address.valid?
           expect(@purchase_address.errors.full_messages).to include("Phone number can't be blank", "Phone number 電話番号を半角数字のみ(ハイフン無し)11桁以内で入力してください")
+        end
+
+        it '電話番号に全角数字が含まれている' do
+          @purchase_address.phone_number = '０００１２３４５６７８'
+          @purchase_address.valid?
+          expect(@purchase_address.errors.full_messages).to include("Phone number 電話番号を半角数字のみ(ハイフン無し)11桁以内で入力してください")
+        end
+
+        it '電話番号が11桁を超えている' do
+          @purchase_address.phone_number = '000123456789'
+          @purchase_address.valid?
+          expect(@purchase_address.errors.full_messages).to include("Phone number 電話番号を半角数字のみ(ハイフン無し)11桁以内で入力してください")
         end
 
         it "tokenが空では登録できないこと" do
