@@ -74,6 +74,12 @@ RSpec.describe PurchaseAddress, type: :model do
           expect(@purchase_address.errors.full_messages).to include("Phone number can't be blank", "Phone number 電話番号を半角数字のみ(ハイフン無し)11桁以内で入力してください")
         end
 
+        it '電話番号に数字以外が含まれている' do
+          @purchase_address.phone_number = '000-1234-5678'
+          @purchase_address.valid?
+          expect(@purchase_address.errors.full_messages).to include("Phone number 電話番号を半角数字のみ(ハイフン無し)11桁以内で入力してください")
+        end
+
         it '電話番号に全角数字が含まれている' do
           @purchase_address.phone_number = '０００１２３４５６７８'
           @purchase_address.valid?
